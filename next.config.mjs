@@ -1,3 +1,5 @@
+import million from 'million/compiler';
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // output: 'export', // Outputs a Single-Page Application (SPA).
@@ -20,4 +22,14 @@ const nextConfig = {
   },
 }
 
-export default nextConfig
+const millionConfig = {
+  auto: {
+    threshold: 0.05, // default: 0.1,
+    skip: ['AccountsRightSidebar', 'EmbedsModal', /Modal/g, 'ConnectModal', 'ConnectButton', 'NounsBuildEmbed'], // default []
+    rsc: true,
+  }
+}
+
+export default million.next(nextConfig, millionConfig);
+
+// export default nextConfig
